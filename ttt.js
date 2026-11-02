@@ -1,3 +1,5 @@
+import { winPatterns } from './winningPattern.js';
+
 let boxes = document.querySelectorAll(".box");
 let resetButton = document.querySelector("#reset-btn");
 let newGameButton = document.querySelector("#new-game-btn");
@@ -6,16 +8,7 @@ let msg = document.querySelector("#msg");
 
 let turn0 = true;
 
-const winPatterns = [
-    [0,1,2], 
-    [0,3,6], 
-    [0,4,8], 
-    [1,4,7], 
-    [2,4,6], 
-    [2,5,8], 
-    [3,4,5], 
-    [6,7,8]
-];
+
 const disableBoxes = () =>{
     for(box of boxes){
         box.disabled = true;
@@ -29,6 +22,7 @@ const enableBoxes = () =>{
 }
 boxes.forEach((box)=>{
     box.addEventListener("click",()=> {
+        console.log(winPatterns);
         console.log("Box was clicked..");
         if(turn0){
             box.innerText = "O";
@@ -73,3 +67,36 @@ const showWinner = (winner) =>{
     msgContainer.classList.remove("hide");
     disableBoxes();
 }
+/*
+const board = Array(9).fill(""); // Represents cells 0 through 8
+
+function checkWin(index, player) {
+  const row = Math.floor(index / 3);
+  const col = index % 3;
+
+  // 1. Check current row
+  if (board[row * 3] === player && board[row * 3 + 1] === player && board[row * 3 + 2] === player) {
+    return true;
+  }
+
+  // 2. Check current column
+  if (board[col] === player && board[col + 3] === player && board[col + 6] === player) {
+    return true;
+  }
+
+  // 3. Check main diagonal (0, 4, 8)
+  if (row === col) {
+    if (board[0] === player && board[4] === player && board[8] === player) {
+      return true;
+    }
+  }
+
+  // 4. Check anti-diagonal (2, 4, 6)
+  if (row + col === 2) {
+    if (board[2] === player && board[4] === player && board[6] === player) {
+      return true;
+    }
+  }
+
+  return false;
+}*/
